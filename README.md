@@ -55,7 +55,7 @@ cd legal-chatbot
 ### ✅ Prerequisites
 Before you begin, make sure the following are installed on your system:
 
-## 🔧 System Requirements
+### 🔧 System Requirements
 Python 3.8+
 
 MySQL Server (5.7+ or 8.x)
@@ -64,7 +64,7 @@ Ollama (for running the indian-law-llama AI model locally)
 
 Git
 
-## 📦 Python Libraries (auto-installed via requirements.txt)
+### 📦 Python Libraries (auto-installed via requirements.txt)
 Flask
 
 Flask-MySQL
@@ -83,14 +83,17 @@ openai (if applicable)
 
 requests
 
-## 🐬 MySQL Setup
+Install all dependencies using:
+```
+pip install -r requirements.txt
+```
+### 🐬 MySQL Setup
 Ensure MySQL is running.
 
 Create a database, e.g., legal_chatbot_db.
 
-## 🧠 Ollama Setup (AI Model)
+### 🧠 Ollama Setup (AI Model)
 Install Ollama: (https://ollama.com/download)
-
 Start Ollama:
 
 ```
@@ -175,10 +178,10 @@ ollama run indian-law-llama
 python app/app.py
 ```
 
-### 🧪 Tests
+## 🧪 Tests
 Coming soon: Unit tests for route and model validation.
 
-### 🛡️ License
+## 🛡️ License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
@@ -191,5 +194,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [**Bare Acts Live**](https://www.bareactslive.com/) – for access to various Indian statutes and acts.
 - [**Vakilno1**](https://www.vakilno1.com/) – for practical legal articles and simplified explanations of Indian law.
 - [**Legitquest**](https://www.legitquest.com/) – for legal research and landmark judgments database.
-
-
