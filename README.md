@@ -52,10 +52,50 @@ git clone https://github.com/your-username/legal-chatbot.git
 cd legal-chatbot
 ```
 
-### 2. Install Requirements
+### ✅ Prerequisites
+Before you begin, make sure the following are installed on your system:
 
-```pip install -r requirements.txt```
+## 🔧 System Requirements
+Python 3.8+
 
+MySQL Server (5.7+ or 8.x)
+
+Ollama (for running the indian-law-llama AI model locally)
+
+Git
+
+## 📦 Python Libraries (auto-installed via requirements.txt)
+Flask
+
+Flask-MySQL
+
+Flask-Login
+
+Flask-WTF
+
+Werkzeug
+
+bcrypt
+
+python-dotenv
+
+openai (if applicable)
+
+requests
+
+## 🐬 MySQL Setup
+Ensure MySQL is running.
+
+Create a database, e.g., legal_chatbot_db.
+
+## 🧠 Ollama Setup (AI Model)
+Install Ollama: (https://ollama.com/download)
+
+Start Ollama:
+
+```
+ollama run indian-law-llama
+```
 ### 3. Setup MySQL Database
 Use the following sql commands for the required database tables.
 ```
