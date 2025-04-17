@@ -20,6 +20,8 @@ An AI-powered Legal Chatbot built using Flask, MySQL, and a custom locally-run m
 
 > ![WhatsApp Image 2025-04-16 at 12 08 10_1624d9b0](https://github.com/user-attachments/assets/b828d73f-46b7-4781-9bef-93ef2bcb06fc)
 
+> ![image](https://github.com/user-attachments/assets/a200981c-190c-4397-b0d1-b741050bbfff)
+
 > ![WhatsApp Image 2025-04-16 at 12 13 16_79490a3b](https://github.com/user-attachments/assets/8351559d-dec3-4191-ab2e-1c4957afaa29)
 
 > ![WhatsApp Image 2025-04-16 at 12 13 36_2ea1dad6](https://github.com/user-attachments/assets/eff579c2-1443-446e-984c-703d488280fa)
