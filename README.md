@@ -97,7 +97,7 @@ Create a database, e.g., legal_chatbot_db.
 ### 🧠 Ollama Setup (AI Model)
 Install Ollama: (https://ollama.com/download)
 Start Ollama:
-
+use the modelfile to create a custom ai model. I created `indian-law-llama`. to run the created model:
 ```
 ollama run indian-law-llama
 ```
