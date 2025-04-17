@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Landmark Cases</h2>
+    
+
+    <!-- Cases Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Case Name</th>
+                    <th>Case Type</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for case in cases %}
+                <tr>
+                    <td>{{ case.case_name }}</td>
+                    <td>{{ case.case_type }}</td>
+                    <td>{{ case.case_date.strftime('%Y-%m-%d') if case.case_date else 'N/A' }}</td>
+                    <td>
+                        <a href="{{ url_for('case_details', case_id=case.id) }}" class="btn btn-sm btn-info">Details</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">No cases found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+{% endblock %}

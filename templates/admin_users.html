@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Manage Users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>User Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+            <th>Feedbacks</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for user_id, email, role in users_roles %}
+        <tr>
+            <td>{{ email }}</td>
+            <td>{{ role or 'No Role Assigned' }}</td>
+            <td>
+                <form action="{{ url_for('manage_users') }}" method="POST">
+                    <input type="hidden" name="user_id" value="{{ user_id }}">
+                    <select name="role">
+                        <option value="">Select Role</option>
+                        <option value="admin" {% if role and role.lower() == 'admin' %}selected{% endif %}>Admin</option>
+                        <option value="user" {% if role and role.lower() == 'user' %}selected{% endif %}>User</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm">Update Role</button>
+                </form>
+            </td>
+            <td>
+                <a href="{{ url_for('view_user_feedbacks', user_email=email) }}" class="btn btn-info btn-sm">
+                    View Feedbacks
+                </a>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('add_case') }}" class="btn btn-success">Add Landmark Case</a>
+<a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+
+<!-- Modal for feedbacks -->
+<div class="modal fade" id="feedbacksModal" tabindex="-1" aria-labelledby="feedbacksModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbacksModalLabel">User Feedbacks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbacksTableBody">
+                        <!-- Feedbacks will be loaded here via AJAX -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    // Handle feedbacks modal
+    $('a[href*="view_user_feedbacks"]').click(function(e) {
+        e.preventDefault();
+        const url = $(this).attr('href');
+        
+        $.get(url, function(data) {
+            const tbody = $('#feedbacksTableBody');
+            tbody.empty();
+            
+            if (data.feedbacks && data.feedbacks.length > 0) {
+                data.feedbacks.forEach(feedback => {
+                    const row = `
+                        <tr>
+                            <td>${new Date(feedback.created_at).toLocaleString()}</td>
+                            <td>${feedback.feedback_text || 'No text provided'}</td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                });
+            } else {
+                tbody.append('<tr><td colspan="2">No feedbacks found for this user</td></tr>');
+            }
+            
+            $('#feedbacksModal').modal('show');
+        }).fail(function() {
+            alert('Error loading feedbacks');
+        });
+    });
+});
+</script>
+{% endblock %}

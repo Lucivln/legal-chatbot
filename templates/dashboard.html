@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Welcome, {{ email }}!</h1>
+
+  <!-- Ask Legal Query Section -->
+  <div class="legal-query-container">
+    <h3>Ask Legal Query</h3>
+    <form method="POST" action="{{ url_for('dashboard') }}">
+      <input type="text" name="user_query" placeholder="Ask a legal question..." required>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  {% if recommendations %}
+    <h3>Your Personalized Response</h3>
+    <p>{{ recommendations }}</p>
+  {% endif %}
+<p>
+
+
+
+
+            
+</p>
+<!-- Search Section -->
+<div class="search-container">
+    <h3>Search Legal Cases</h3>
+    <form method="POST" action="{{ url_for('search') }}">
+      <!-- Search query input -->
+      <input type="text" name="search_query" placeholder="Search cases..." value="{{ search_query or '' }}" required>
+  
+      <!-- Case type selection -->
+      <select name="case_type">
+        <option value="">Select Case Type</option>
+        <option value="Civil" {% if case_type == 'Civil' %}selected{% endif %}>Civil</option>
+        <option value="Criminal" {% if case_type == 'Criminal' %}selected{% endif %}>Criminal</option>
+        <option value="Family" {% if case_type == 'Family' %}selected{% endif %}>Family</option>
+      </select>
+  
+      <!-- Date range input -->
+      <input type="date" name="start_date" value="{{ start_date or '' }}" placeholder="Start Date">
+      <input type="date" name="end_date" value="{{ end_date or '' }}" placeholder="End Date">
+  
+      <!-- Boolean query option -->
+      <input type="checkbox" name="boolean_query" {% if boolean_query %}checked{% endif %}>
+      <label for="boolean_query">Use Boolean Search</label>
+  
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+  <p>
+
+
+
+
+
+
+
+
+  </p>
+  <a href="{{ url_for('search_cases') }}" class="btn btn-outline-info">Landmark Cases</a>
+  <a href="{{ url_for('feedbacks') }}" class="btn btn-outline-info">Feedback</a>
+
+  <!-- Search Results -->
+  {% if search_results %}
+    <h3>Search Results for "{{ search_query }}"</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Case Name</th>
+          <th>Case Text</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for case_name, case_text in search_results %}
+          <tr>
+            <td>{{ case_name }}</td>
+            <td>{{ case_text }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Search Results</h2>
+
+{% if results %}
+  <ul class="list-group">
+    {% for case in results %}
+    <li class="list-group-item">
+        <h5>{{ case.case_name }} <small>({{ case.case_type }})</small></h5>
+        <p><strong>Date:</strong> {{ case.case_date }}</p>
+        <p>{{ case.case_summary }}</p>
+        <details>
+            <summary>View Full Text</summary>
+            <pre>{{ case.case_law_text }}</pre>
+        </details>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No cases found for your query.</p>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+{% endblock %}

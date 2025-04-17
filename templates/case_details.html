@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">{{ case.case_name }}</h2>
+                <a href="{{ url_for('view_cases') }}" class="btn btn-light btn-sm">
+                    <i class="fas fa-arrow-left"></i> Back to Cases
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h5 class="card-title">Case Details</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Case Type:</strong> {{ case.case_type }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Date:</strong> 
+                            {% if case.case_date %}
+                                {{ case.case_date.strftime('%B %d, %Y') }}
+                            {% else %}
+                                Not available
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Case ID:</strong> {{ case.id }}
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6">
+                    {% if session.get('role') == 'admin' %}
+                    <div class="float-end">
+                        <a href="{{ url_for('edit_case', case_id=case.id) }}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="case-content mt-4">
+                <h5>Case Text:</h5>
+                <div class="p-3 bg-light rounded">
+                    {% if case.case_law_text %}
+                        {{ case.case_law_text|replace('\n', '<br>')|safe }}
+                    {% else %}
+                        <p class="text-muted">No case text available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+{% if session.get('role') == 'admin' %}
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "{{ case.case_name }}"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{{ url_for('delete_case', case_id=case.id) }}" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+{% endblock %}

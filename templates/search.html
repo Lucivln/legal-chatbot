@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Search Legal Cases</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="keyword">Keyword</label>
+            <input type="text" class="form-control" id="keyword" name="keyword" required>
+        </div>
+        <div class="form-group">
+            <label for="case_type">Case Type</label>
+            <input type="text" class="form-control" id="case_type" name="case_type">
+        </div>
+        <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <input type="date" class="form-control" id="start_date" name="start_date">
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date</label>
+            <input type="date" class="form-control" id="end_date" name="end_date">
+        </div>
+        <div class="form-group">
+            <label for="boolean_query">Boolean Query</label>
+            <input type="text" class="form-control" id="boolean_query" name="boolean_query">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+{% endblock %}
+

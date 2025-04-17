@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Law Recommendations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Case Law Recommendations</h2>
+
+        {% if recommendations %}
+            <p>{{ recommendations }}</p>
+        {% else %}
+            <p>No recommendations available at the moment. Please try again later or refine your query.</p>
+        {% endif %}
+
+        <h3>Provide Feedback</h3>
+        <form method="POST" action="{{ url_for('feedback') }}">
+            <label for="feedback_text">Your Feedback:</label><br>
+            <textarea name="feedback_text" id="feedback_text" rows="4" cols="50" required></textarea><br>
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+        <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+    </div>
+</body>
+</html>
+

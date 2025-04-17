@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add Landmark Case</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="case_name">Case Name</label>
+        <input type="text" class="form-control" id="case_name" name="case_name" required>
+    </div>
+    <div class="form-group">
+        <label for="case_type">Case Type</label>
+        <select class="form-control" id="case_type" name="case_type" required>
+            <option value="Civil">Civil</option>
+            <option value="Criminal">Criminal</option>
+            <option value="Family">Family</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="case_date">Case Date</label>
+        <input type="date" class="form-control" id="case_date" name="case_date" required>
+    </div>
+    <div class="form-group">
+        <label for="case_summary">Case Summary</label>
+        <textarea class="form-control" id="case_summary" name="case_summary" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="case_law_text">Case Law Text</label>
+        <textarea class="form-control" id="case_law_text" name="case_law_text" rows="6" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Case</button>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Search Landmark Cases</h2>
+<form method="POST">
+    <div class="form-group">
+        <input type="text" class="form-control" name="keyword" placeholder="Enter keyword..." value="{{ keyword }}">
+    </div>
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
+
+{% if results %}
+    <h4 class="mt-4">Results:</h4>
+    <ul class="list-group mt-2">
+        {% for case in results %}
+        <li class="list-group-item">
+            <h5>{{ case.case_name }} <small class="text-muted">({{ case.case_type }})</small></h5>
+            <p><strong>Date:</strong> {{ case.case_date }}</p>
+            <p>{{ case.case_summary }}</p>
+            <details>
+                <summary>Full Case Law Text</summary>
+                <pre>{{ case.case_law_text }}</pre>
+            </details>
+        </li>
+        {% endfor %}
+    </ul>
+{% elif keyword %}
+    <p class="mt-4 text-danger">No results found for "{{ keyword }}".</p>
+{% endif %}
+{% endblock %}
