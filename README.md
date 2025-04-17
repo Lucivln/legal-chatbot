@@ -18,8 +18,6 @@ An AI-powered Legal Chatbot built using Flask, MySQL, and a custom locally-run m
 
 ## 📸 Screenshots
 
-> Add screenshots of your login page, dashboard, chatbot interface, and admin panel.
-
 > ![WhatsApp Image 2025-04-16 at 12 08 10_1624d9b0](https://github.com/user-attachments/assets/b828d73f-46b7-4781-9bef-93ef2bcb06fc)
 
 > ![WhatsApp Image 2025-04-16 at 12 13 16_79490a3b](https://github.com/user-attachments/assets/8351559d-dec3-4191-ab2e-1c4957afaa29)
