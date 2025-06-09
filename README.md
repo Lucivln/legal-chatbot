@@ -50,7 +50,7 @@ An AI-powered Legal Chatbot built using Flask, MySQL, and a custom locally-run m
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/legal-chatbot.git
+git clone https://github.com/Lucivln/legal-chatbot.git
 cd legal-chatbot
 ```
 
