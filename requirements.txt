@@ -6,5 +6,5 @@ WTForms==3.1.2
 mysqlclient==2.2.0
 python-dotenv==1.0.1
 bcrypt==4.1.2
-requests==2.31.0
+requests>=2.32.0
 openai==1.14.3  # Optional: Only if you're using OpenAI fallback
